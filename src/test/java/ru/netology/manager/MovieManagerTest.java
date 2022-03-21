@@ -49,7 +49,7 @@ class MovieManagerTest<expected> {
         manager.add(movie9);
         manager.add(movie10);
     }
-    
+
     @Test
     public void shouldAddMovie() {
         Movie[] returned = new Movie[]{movie1, movie2, movie3, movie4};
