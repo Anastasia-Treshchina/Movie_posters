@@ -2,9 +2,11 @@ package ru.netology.manager;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import ru.netology.domain.Movie;
 import ru.netology.manager.MovieManager;
 import ru.netology.repository.MovieRepository;
@@ -15,9 +17,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 
-class MovieManagerTest<expected> {
+@ExtendWith(MockitoExtension.class)
+class MovieManagerTest {
     @Mock
-    private MovieRepository repository;
+    private MovieRepository repository = Mockito.mock(MovieRepository.class);
     @InjectMocks
     private MovieManager manager = new MovieManager(repository);
 
