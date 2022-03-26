@@ -20,7 +20,7 @@ import static org.mockito.Mockito.doReturn;
 @ExtendWith(MockitoExtension.class)
 class MovieManagerTest {
     @Mock
-    private MovieRepository repository = Mockito.mock(MovieRepository.class);
+    private MovieRepository repository;
     @InjectMocks
     private MovieManager manager = new MovieManager(repository);
 
@@ -36,8 +36,7 @@ class MovieManagerTest {
     private Movie movie10 = new Movie(10, "Номер один", "комедия", true);
     private Movie movie11 = new Movie(11, "Номер один", "комедия", true);
 
-    Movie[] expected = {movie10, movie9, movie8, movie7, movie6,
-           movie5, movie4, movie3, movie2, movie1};
+    Movie[] expected = {movie10, movie9, movie8, movie7, movie6, movie5, movie4, movie3, movie2, movie1};
 
     @BeforeEach
     void add() {
@@ -55,15 +54,23 @@ class MovieManagerTest {
 
     @Test
     public void shouldAddMovie() {
-        Movie[] returned = new Movie[]{movie1, movie2, movie3, movie4};
+        Movie[] returned = new Movie[]{movie1, movie2, movie3, movie4, movie5, movie6, movie7, movie8, movie9, movie10, movie11};
+        doReturn(returned).when(repository).findAll();
+        doNothing().when(repository).add(movie11);
+        manager.add(movie11);
+        Movie[] expected = new Movie[]{movie11, movie10, movie9, movie8, movie7, movie6, movie5, movie4, movie3, movie2};
+        Movie[] actual = manager.findLastTen();
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldAddMovie5() {
+        Movie[] returned = new Movie[]{movie1, movie2, movie3, movie4, movie5};
         doReturn(returned).when(repository).findAll();
         doNothing().when(repository).add(movie5);
-
         manager.add(movie5);
-
-        Movie[] expected = {movie5, movie4, movie3, movie2, movie1};
+        Movie[] expected = new Movie[]{movie5, movie4, movie3, movie2, movie1};
         Movie[] actual = manager.findLastTen();
-
         assertArrayEquals(expected, actual);
     }
 

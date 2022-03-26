@@ -7,8 +7,7 @@ public class MovieRepository {
 
 
     public void add(Movie movie) {
-        int length = movies.length + 1;
-        Movie[] tmp = new Movie[length];
+        Movie[] tmp = new Movie[movies.length + 1];
         System.arraycopy(movies, 0, tmp, 0, movies.length);
         int lastIndex = tmp.length - 1;
         tmp[lastIndex] = movie;
