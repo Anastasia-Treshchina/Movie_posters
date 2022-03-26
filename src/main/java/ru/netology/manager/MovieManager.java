@@ -17,7 +17,7 @@ public class MovieManager {
     public Movie[] findLastTen() {
         Movie[] movies = repository.findAll();
         int resultLength = movies.length;
-        if (resultLength >= countMovie) {
+        if (resultLength > countMovie) {
             resultLength = countMovie;
         } else {
             resultLength = movies.length;

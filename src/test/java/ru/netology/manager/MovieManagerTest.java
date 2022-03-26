@@ -34,7 +34,7 @@ class MovieManagerTest<expected> {
     private Movie movie11 = new Movie(11, "Номер один", "комедия", true);
 
     Movie[] expected = {movie10, movie9, movie8, movie7, movie6,
-            movie5, movie4, movie3, movie2, movie1};
+           movie5, movie4, movie3, movie2, movie1};
 
     @BeforeEach
     void add() {
@@ -58,7 +58,7 @@ class MovieManagerTest<expected> {
 
         manager.add(movie5);
 
-        Movie[] expected = {movie1, movie2, movie3, movie4, movie5};
+        Movie[] expected = {movie5, movie4, movie3, movie2, movie1};
         Movie[] actual = manager.findLastTen();
 
         assertArrayEquals(expected, actual);

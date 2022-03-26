@@ -29,8 +29,8 @@ public class MovieRepository {
     }
 
     public Movie[] removeById(int id) {
-        int legth = movies.length - 1;
-        Movie[] tmp = new Movie[legth];
+        int length = movies.length - 1;
+        Movie[] tmp = new Movie[length];
         int index = 0;
         for (Movie movie : movies) {
             if (movie.getId() != id) {
